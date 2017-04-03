@@ -2,20 +2,26 @@ package com.zyh.factory.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "productManagement")
+@Table(name = "productTable")
 public class ProductEntity {
 
     @Id
     @GeneratedValue
-    private String productId;
+    private long productId;
     @Column
     private String productName;
     @Column
@@ -24,15 +30,22 @@ public class ProductEntity {
     private int speedQuantity;
     @Column
     private int speedSecond;
-    @Embedded
-    private List<ProductSourceEntity> productSourceEntity;
     
-	public String getProductId() {
+    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="product")
+    private List<ProductSourceEntity> productSource;
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    @JsonIgnore
+    private List<WorkEntity> work;
+    
+
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
+
 	public String getProductName() {
 		return productName;
 	}
@@ -58,11 +71,18 @@ public class ProductEntity {
 		this.speedSecond = speedSecond;
 	}
 	public List<ProductSourceEntity> getProductSource() {
-		return productSourceEntity;
+		return productSource;
 	}
-	public void setProductSource(List<ProductSourceEntity> productSourceEntity) {
-		this.productSourceEntity = productSourceEntity;
+	public void setProductSource(List<ProductSourceEntity> productSource) {
+		this.productSource = productSource;
 	}
+	public List<WorkEntity> getWork() {
+		return work;
+	}
+	public void setWork(List<WorkEntity> work) {
+		this.work = work;
+	}
+
 
     
 }

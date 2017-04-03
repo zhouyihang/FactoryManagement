@@ -1,21 +1,29 @@
 package com.zyh.factory.entity;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * @author Yihang
+ *
+ */
 @Entity
-@Table(name = "sourceManagement")
+@Table(name = "sourceTable")
 public class SourceEntity {
 
     @Id
     @GeneratedValue
-    private String sourceId;
+    private long sourceId;
     @Column
     private String sourceName;
     @Column
@@ -24,10 +32,16 @@ public class SourceEntity {
     private String sourceUnit;
     @Column
     private String providerName;
-	public String getSourceId() {
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="source")
+    @JsonIgnore
+    private List<ProductSourceEntity> productSource;
+
+    
+	public long getSourceId() {
 		return sourceId;
 	}
-	public void setSourceId(String sourceId) {
+	public void setSourceId(long sourceId) {
 		this.sourceId = sourceId;
 	}
 	public String getSourceName() {
@@ -53,6 +67,12 @@ public class SourceEntity {
 	}
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
+	}
+	public List<ProductSourceEntity> getProductSource() {
+		return productSource;
+	}
+	public void setProductSource(List<ProductSourceEntity> productSource) {
+		this.productSource = productSource;
 	}
 
     

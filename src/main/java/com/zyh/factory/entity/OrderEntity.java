@@ -5,30 +5,34 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orderTable")
 public class OrderEntity {
 
     @Id
     @GeneratedValue
-    private String orderId;
+    private Long orderId;
     @Column
     private String orderStatus;
     @Column
     private Date expectDeliverDate;
     @Column
     private Date actualDeliverDate;
-    @OneToMany
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="order")
     private List<WorkEntity> orderWorks;
-	public String getOrderId() {
+    
+
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(String orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	public String getOrderStatus() {
