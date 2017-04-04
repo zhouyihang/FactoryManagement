@@ -1,7 +1,6 @@
 package com.zyh.factory.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +23,9 @@ public class ProductSourceEntity {
     @GeneratedValue
     private long productSourceId;
     @Column
-    private long quantity;
+    private int quantity;
+    @Column
+    private String sourceColor;
     @ManyToOne
     @JsonIgnore
     private ProductEntity product;
@@ -37,10 +38,10 @@ public class ProductSourceEntity {
 //	public void setSourceId(String sourceId) {
 //		this.sourceId = sourceId;
 //	}
-	public long getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(long quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public SourceEntity getSource() {
@@ -61,6 +62,12 @@ public class ProductSourceEntity {
 	public void setProduct(ProductEntity product) {
 		this.product = product;
 	}
-    
+
+	public String getSourceColor() {
+		return sourceColor;
+	}
+	public void setSourceColor(String sourceColor) {
+		this.sourceColor = sourceColor;
+	}
 
 }

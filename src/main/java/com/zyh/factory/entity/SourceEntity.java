@@ -27,6 +27,8 @@ public class SourceEntity {
     @Column
     private String sourceName;
     @Column
+    private String sourceCode;
+    @Column
     private BigDecimal price;
     @Column
     private String sourceUnit;
@@ -73,6 +75,12 @@ public class SourceEntity {
 	}
 	public void setProductSource(List<ProductSourceEntity> productSource) {
 		this.productSource = productSource;
+	}
+	public String getSourceCode() {
+		return sourceCode;
+	}
+	public void setSourceCode(String sourceCode) {
+		this.sourceCode = sourceCode;
 	}
 
     

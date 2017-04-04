@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zyh.factory.controller.io.ProductIO;
 import com.zyh.factory.entity.ProductEntity;
-import com.zyh.factory.entity.ProductEntity;
-import com.zyh.factory.repositories.ProductRepository;
 import com.zyh.factory.repositories.ProductRepository;
 import com.zyh.factory.service.ProductService;
 

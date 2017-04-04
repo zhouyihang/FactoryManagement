@@ -54,7 +54,7 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/{workId}", method = RequestMethod.GET)
-    public WorkEntity work(@PathVariable String workId) {
+    public WorkEntity work(@PathVariable long workId) {
         return workRepository.findOne(workId);
     }
 }

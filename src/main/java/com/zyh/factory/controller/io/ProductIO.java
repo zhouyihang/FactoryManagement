@@ -1,7 +1,6 @@
 package com.zyh.factory.controller.io;
 
 import com.zyh.factory.entity.ProductEntity;
-import com.zyh.factory.entity.WorkEntity;
 import com.zyh.factory.transman.TransMessage;
 
 /**
