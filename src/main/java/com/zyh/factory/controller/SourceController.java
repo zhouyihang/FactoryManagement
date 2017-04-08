@@ -11,6 +11,7 @@ import com.zyh.factory.controller.io.SourceIO;
 import com.zyh.factory.entity.SourceEntity;
 import com.zyh.factory.repositories.SourceRepository;
 import com.zyh.factory.service.SourceService;
+import com.zyh.factory.transman.TransMessage;
 
 
 /**
@@ -28,6 +29,9 @@ public class SourceController {
 
     @RequestMapping(method = RequestMethod.POST)
     public SourceIO create(@RequestBody SourceIO sourceIO) {
+    	if (sourceIO.getTransMessage() == null) {
+    		sourceIO.setTransMessage(new TransMessage());
+    	}
     	SourceEntity source = sourceService.create(sourceIO.getTransMessage(), sourceIO.getSource());
     	if(sourceIO.getTransMessage().shouStop()) {
     		return sourceIO;

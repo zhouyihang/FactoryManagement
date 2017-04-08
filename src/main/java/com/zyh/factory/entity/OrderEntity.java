@@ -24,6 +24,8 @@ public class OrderEntity {
     private Date expectDeliverDate;
     @Column
     private Date actualDeliverDate;
+    @Column
+    private String remark;
     
     @OneToMany(fetch=FetchType.LAZY, mappedBy="order")
     private List<WorkEntity> orderWorks;
@@ -58,6 +60,12 @@ public class OrderEntity {
 	}
 	public void setOrderWorks(List<WorkEntity> orderWorks) {
 		this.orderWorks = orderWorks;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
     
     

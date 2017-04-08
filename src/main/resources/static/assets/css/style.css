@@ -1,0 +1,28 @@
+.aqt-growl {
+  padding-top: 25px;
+}
+
+.growl-container {
+	margin-top: 50px !important;
+}
+.growl-container > .growl-item.ng-enter,
+.growl-container > .growl-item.ng-leave {
+  -webkit-transition:1s linear all;
+  -moz-transition:1s linear all;
+  -o-transition:1s linear all;
+  transition:1s linear all;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%; 
+  height: 50%;
+  min-width: 300px;
+  max-width: 600px;
+  padding: 40px;
+}

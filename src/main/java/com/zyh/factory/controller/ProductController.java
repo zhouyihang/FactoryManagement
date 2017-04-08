@@ -11,6 +11,7 @@ import com.zyh.factory.controller.io.ProductIO;
 import com.zyh.factory.entity.ProductEntity;
 import com.zyh.factory.repositories.ProductRepository;
 import com.zyh.factory.service.ProductService;
+import com.zyh.factory.transman.TransMessage;
 
 
 @RestController
@@ -24,6 +25,9 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ProductIO create(@RequestBody ProductIO productIO) {
+    	if (productIO.getTransMessage() == null) {
+    		productIO.setTransMessage(new TransMessage());
+    	}
     	ProductEntity product = productService.create(productIO.getTransMessage(), productIO.getProduct());
     	if(productIO.getTransMessage().shouStop()) {
     		return productIO;

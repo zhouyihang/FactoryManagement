@@ -6,4 +6,6 @@ import com.zyh.factory.entity.OrderEntity;
 
 public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
 
+	Iterable<OrderEntity> findByOrderStatus(String orderStatus);
+
 }

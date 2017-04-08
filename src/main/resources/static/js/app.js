@@ -1,0 +1,1 @@
+var factoryManagementApp = angular.module("factoryManagementApp", []);

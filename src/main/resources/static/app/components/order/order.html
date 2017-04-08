@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-xs-6 col-md-4">
+		<a href="#/editOrder" class="btn btn-info btn-lg">edit order</a>
+	</div>
+</div>
+
+<div class="table-responsive">
+	<table
+		class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+		<thead>
+			<tr>
+				<th width="5%">#</th>
+				<th width="30%">Código</th>
+				<th width="50%">Nome</th>
+				<th width="10%">Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="order in orders">
+				<td class="aw-table-checkbox"><input type="checkbox" /></td>
+				<td>{{order.id}}</td>
+				<td>{{order.status}}</td>
+				<td>
+					<div style="text-align: center;">
+						<btn-remove name="" action="removerOrder(order)"></btn-remove>
+						<a href="/editOrder/{{order.id}}" class="btn  btn-warning btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="/viewOrder/{{order.id}}" class="btn btn-default btn-xs"><i class="fa fa-search" aria-hidden="true"></i></a>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
