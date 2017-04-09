@@ -1,17 +1,40 @@
-appCliente.controller('orderController', function($scope, orderService, dialogs) {
+appCliente.controller('ordersController', function($scope, orderService, orderListService, dialogs) {
 	
-	$scope.orders = [];
 	
-	orderService.findAll().$promise.then(
-		function (orders) {
-			$scope.orders = orders;
-		}, 
-		function (response) {
+	$scope.init = function() {
+		$scope.getList();
+    };
+    
+    $scope.getList = function() {
+        orderListService.getOrderList()
+            .then(
+                function( Orders ) {
+                    loadData( Orders );
+                }
+            )
+    };
 
-	});
+    $scope.valueChanged = function() {
+        orderListService.getOrderList($scope.selectedOrderStatus)
+            .then(
+                loadOrderList,
+                function( errorMessage ) {
+                    alert( errorMessage );
+                }
+            )
+    };
 
+    function loadData( newOrders ) {
+        $scope.orders = newOrders;
+    };
+
+    function loadOrderList( orderList ) {
+        console.log(orderList);
+        $scope.orderList = orderList;
+    };
+    
 	$scope.removerOrder = function(order) {
-		var dlg = dialogs.confirm('Remoção de Order', 'Deseja remover?');
+		var dlg = dialogs.confirm('remove a order', 'confirm remover?');
 		dlg.result.then(function(btn){
 			remover(order);
 		},function(btn){

@@ -26,6 +26,8 @@ public class WorkEntity {
     @Column
     private String status;
     @Column
+    private int quantity;
+    @Column
     private Date expectDeliverDate;
     @Column
     private Date planDeliverDate;
@@ -86,6 +88,12 @@ public class WorkEntity {
 	}
 	public void setProduct(ProductEntity product) {
 		this.product = product;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
     

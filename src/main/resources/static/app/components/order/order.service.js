@@ -7,14 +7,9 @@ angular.module('appCliente')
 			method: 'POST'
 		}
 	});
-	var _findAll = $resource('/order/all', null, {
-		update : {
-			method: 'GET'
-		}
-	});
+
 	return {
 		private: _private
-		findAll: _findAll
 	};
 })
 
@@ -33,8 +28,7 @@ angular.module('appCliente')
 	};
 	
 	this.findAll = function() {
-		//return resourceFactory.private.query();
-		return resourceFactory.findAll.query();
+		return resourceFactory.private.query();
 	};
 	
 	this.remove = function(orderId) {

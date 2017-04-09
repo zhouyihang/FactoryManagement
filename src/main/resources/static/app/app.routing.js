@@ -24,17 +24,17 @@ appCliente.config(function($routeProvider) {
 		templateUrl : 'app/components/auth/signup/signup.html',
 		controller: 'SignUpController'
 
-	}).when("/viewOrder", {
+	}).when("/viewOrder/:orderId", {
 		templateUrl : 'app/components/order/order-detail.html',
 		controller : 'orderController'	
 			
-	}).when("/editOrder", {
+	}).when("/editOrder/:orderId", {
 		templateUrl : 'app/components/order/order-edit.html',
 		controller : 'orderController'
 				
 	}).when("/findAllOrder", {
 		templateUrl : 'app/components/order/order.html',
-		controller : 'orderController'	
+		controller : 'ordersController'	
 			
 	}).otherwise({
 		redirectTo : '/'

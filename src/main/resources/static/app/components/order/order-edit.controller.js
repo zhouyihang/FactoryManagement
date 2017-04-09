@@ -2,26 +2,30 @@ appCliente.controller('orderController', function($scope, orderService, $locatio
 
 	$scope.order = {};
 
-	$scope.salvarOrder = function(order) {
+	
+	
+	$scope.saveOrder = function(order) {
 
 		if ($scope.frmOrder.$valid) {
-			if ($scope.order.id) {
+			if ($scope.order.orderId) {
 				
 				orderService.updateOrder(order).$promise.then(
 				function(value) {
-					$location.path('#/order')
-					growl.success("Order update sucessfully!");
+					$location.path('/viewOrder/')
+					growl.success("Order updated sucessfully!");
 
 				}, function(error) {
 
 				});
 
 			} else {
+				var locr = "'/viewOrder/'";
+				var loc = locr.concat($scope.order.orderId);
 				orderService.saveOrder(order).$promise.then(
 
 					function(value) {
-						$location.path('#/order')
-						growl.success("Order save sucessfully!");
+						$location.path(loc)
+						growl.success("Order created 2 sucessfully!");
 	
 					}, function(error) {
 

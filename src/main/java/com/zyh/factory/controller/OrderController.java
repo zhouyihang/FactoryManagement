@@ -27,20 +27,37 @@ public class OrderController {
     OrderService orderService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public OrderIO create(@RequestBody OrderIO orderIO, HttpServletResponse res) {
+    public OrderEntity create(@RequestBody OrderEntity order, HttpServletResponse res) {
+    	OrderIO orderIO = new OrderIO();
     	if (orderIO.getTransMessage() == null) {
     		orderIO.setTransMessage(new TransMessage());
     	}
-    	OrderEntity order = orderService.create(orderIO.getTransMessage(), orderIO.getOrder());
+//    	OrderEntity order = orderService.create(orderIO.getTransMessage(), orderIO.getOrder());
+    	orderService.create(orderIO.getTransMessage(), order);
     	if(orderIO.getTransMessage().shouStop()) {
     		res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    		return orderIO;
+    		return order;
     	}
     	orderRepository.save(order);
-        return orderIO;
+        return order;
     }
     
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/{orderId}", method = RequestMethod.POST)
+    public OrderEntity updateOrder(@PathVariable long orderId, @RequestBody OrderEntity order, 
+    		HttpServletResponse res) {
+    	TransMessage message = new TransMessage();
+        //OrderEntity orderOld = orderRepository.findOne(orderId);
+    	orderService.create(message, order);
+    	order.setOrderId(orderId);
+    	if(message.shouStop()) {
+    		res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    		return order;
+    	}
+    	orderRepository.save(order);
+        return order;
+    }
+    
+    @RequestMapping(method = RequestMethod.GET)
     public Iterable<OrderEntity> orders() {
         return orderRepository.findAll();
     }
@@ -50,8 +67,8 @@ public class OrderController {
         return orderRepository.findOne(orderId);
     }
     
-    @RequestMapping(method = RequestMethod.GET)
-    public Iterable<OrderEntity> orderByStatus(@RequestParam String orderStatus) {
-        return orderRepository.findByOrderStatus(orderStatus);
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public Iterable<OrderEntity> orderByStatus(@RequestParam String orderStatus) {
+//        return orderRepository.findByOrderStatus(orderStatus);
+//    }
 }

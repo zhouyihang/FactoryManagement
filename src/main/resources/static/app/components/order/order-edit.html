@@ -7,23 +7,27 @@
 	<div class="container-fluid">
 		<form name="frmOrder" novalidate>
 			<div class="form-group">
+				<label for="identificacao">orderId</label> 
+				<input id="identificacao" class="form-control" name="orderId" ng-model="order.orderId"/>
+			</div>
+			<div class="form-group">
 				<label for="identificacao">expectDeliverDate</label> 
-				<input id="identificacao" required type="date" size="10" class="form-control" name="expectDeliverDate" ng-model="order.order.expectDeliverDate"/>
-				<span ng-show="frmOrder.nome.$dirty && frmOrder.nome.$error.required" class="form-control alert alert-danger">pls input expect date</span>
+				<input id="identificacao" required type="date" size="10" class="form-control" name="expectDeliverDate" ng-model="order.expectDeliverDate"/>
+				<!-- <span ng-show="frmOrder.nome.$dirty && frmOrder.nome.$error.required" class="form-control alert alert-danger">pls input expect date</span> -->
 			</div>
 			<div class="form-group">
 				<label for="identificacao">actualDeliverDate</label> 
-				<input id="identificacao" type="date" class="form-control" name="actualDeliverDate" ng-model="order.order.actualDeliverDate"/>
+				<input id="identificacao" type="date" class="form-control" name="actualDeliverDate" ng-model="order.actualDeliverDate"/>
 			</div>
 			<div class="form-group">
 				<label for="descricao">remark</label>
-				<textarea id="descricao" name="descricao" rows="3" class="form-control" name="remark" ng-model="order.order.remark"></textarea>
+				<textarea id="descricao" name="descricao" rows="3" class="form-control" name="remark" ng-model="order.remark"></textarea>
 			</div>
 		</form>
 		
 		<div class="form-group">
 			<button class="btn  btn-primary" type="submit" ng-disabled="frmOrder.$invalid"
-				ng-click="salvarOrder(order)">Submit</button>
+				ng-click="saveOrder(order)">Submit</button>
 			<button class="btn  btn-default" type="submit" data-dismiss="modal"
 				ng-click="cancelarAlteracao()">Cancelar</button>
 		</div>
