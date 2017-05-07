@@ -1,4 +1,4 @@
-appCliente.controller('SignUpController', function ($scope, $http, growl, $location, signupService) {
+appFactory.controller('SignUpController', function ($scope, $http, growl, $location, signupService) {
 	
 	$scope.user = {};
 	

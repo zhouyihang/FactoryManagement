@@ -11,4 +11,6 @@ public interface OrderService {
 
 	OrderEntity create(TransMessage transMessage, OrderEntity order);
 
+	OrderEntity update(TransMessage message, OrderEntity order);
+
 }

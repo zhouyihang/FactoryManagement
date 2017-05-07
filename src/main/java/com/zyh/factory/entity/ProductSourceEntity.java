@@ -1,7 +1,11 @@
 package com.zyh.factory.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -15,7 +19,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "productSource")
-public class ProductSourceEntity {
+public class ProductSourceEntity  implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 //    @Column
 //    private String sourceId;
@@ -26,10 +35,10 @@ public class ProductSourceEntity {
     private int quantity;
     @Column
     private String sourceColor;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JsonIgnore
     private ProductEntity product;
-    @ManyToOne
+    @ManyToOne(cascade=(CascadeType.ALL))
     private SourceEntity source;
     
 //	public String getSourceId() {

@@ -1,5 +1,7 @@
 package com.zyh.factory.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,19 +30,37 @@ public class SourceController {
     SourceService sourceService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public SourceIO create(@RequestBody SourceIO sourceIO) {
+    public SourceEntity create(@RequestBody SourceEntity source, HttpServletResponse res) {
+    	SourceIO sourceIO = new SourceIO();
     	if (sourceIO.getTransMessage() == null) {
     		sourceIO.setTransMessage(new TransMessage());
     	}
-    	SourceEntity source = sourceService.create(sourceIO.getTransMessage(), sourceIO.getSource());
+//    	SourceEntity source = sourceService.create(sourceIO.getTransMessage(), sourceIO.getSource());
+    	sourceService.create(sourceIO.getTransMessage(), source);
     	if(sourceIO.getTransMessage().shouStop()) {
-    		return sourceIO;
+    		res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    		return source;
     	}
     	sourceRepository.save(source);
-        return sourceIO;
+        return source;
     }
     
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/{sourceId}", method = RequestMethod.POST)
+    public SourceEntity updateSource(@PathVariable long sourceId, @RequestBody SourceEntity source, 
+    		HttpServletResponse res) {
+    	TransMessage message = new TransMessage();
+        //SourceEntity sourceOld = sourceRepository.findOne(sourceId);
+    	sourceService.update(message, source);
+    	source.setSourceId(sourceId);
+    	if(message.shouStop()) {
+    		res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    		return source;
+    	}
+    	sourceRepository.save(source);
+        return source;
+    }
+    
+    @RequestMapping(method = RequestMethod.GET)
     public Iterable<SourceEntity> sources() {
         return sourceRepository.findAll();
     }

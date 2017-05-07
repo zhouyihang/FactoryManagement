@@ -1,11 +1,19 @@
 <div class="table-responsive">
 
-	<h2>Order Details</h2>
+	<h2>Order Works Details</h2>
 	
 	<label>order id: </label> <label>{{order.orderId}}</label>
-	<label>| remark: </label> <label>{{order.remark}}</label>
+	<label>| name: </label> <label>{{order.orderName}}</label>
 	<label>| status: </label> <label>{{order.orderStatus}}</label>
+	<label>| expect: </label> <label>{{order.expectDeliverDate}}</label>
+	<label>| actual: </label> <label>{{order.actualDeliverDate}}</label>
 
+	<div class="form-group">
+		 <a class="btn  btn-primary" href="#/editOrder/{{order.orderId}}" role="button">update order</a>
+		 <button class="btn  btn-primary" type="submit" ng-disabled="order.orderStatus != 'new'"
+				ng-click="addWork(order)">add work</button>
+	</div>
+	
 	<table
 		class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 		<thead>
@@ -29,16 +37,13 @@
 				<td>{{work.expectDeliverDate}}</td>
 				<td>
 					<div> <!--  style="text-align: center;" -->
-						<btn-remove name="" action="removerWork(work)"></btn-remove>
-						<a href="#/editWork/{{work.workId}}" class="btn  btn-warning btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a href="#/viewWork/{{work.workId}}" class="btn btn-default btn-xs"><i class="fa fa-search" aria-hidden="true"></i></a>
+						<a href="#/editWork/{{work.workId}}" class="btn  btn-warning btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<!-- <btn-remove name="" action="removerWork(work)"></btn-remove> -->
 					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	
-	<p>
-		<a class="btn btn-primary btn-lg" href="#/editOrder" role="button">new order</a>
-	</p>
 </div>

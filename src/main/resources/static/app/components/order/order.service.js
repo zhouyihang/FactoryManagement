@@ -1,6 +1,6 @@
-angular.module('appCliente')
+angular.module('appFactory')
 
-.factory('resourceFactory', function($resource) {
+.factory('orderFactory', function($resource) {
 	
 	var _private = $resource('/order/:orderId', null, {
 		update : {
@@ -13,26 +13,26 @@ angular.module('appCliente')
 	};
 })
 
-.service('orderService', function(resourceFactory){
+.service('orderService', function(orderFactory){
 	
 	this.saveOrder = function(order){
-		return resourceFactory.private.save(order);
+		return orderFactory.private.save(order);
 	};
 	
 	this.updateOrder = function(order) {
-		return resourceFactory.private.update(order);
+		return orderFactory.private.update(order);
 	};
 	
 	this.getById = function(orderId){
-		return resourceFactory.private.get({orderId: orderId});
+		return orderFactory.private.get({orderId: orderId});
 	};
 	
 	this.findAll = function() {
-		return resourceFactory.private.query();
+		return orderFactory.private.query();
 	};
 	
 	this.remove = function(orderId) {
-		return resourceFactory.private.delete({orderId: orderId});
+		return orderFactory.private.delete({orderId: orderId});
 	};
 
 });

@@ -11,4 +11,6 @@ public interface SourceService {
 
 	SourceEntity create(TransMessage transMessage, SourceEntity source);
 
+	SourceEntity update(TransMessage message, SourceEntity source);
+
 }

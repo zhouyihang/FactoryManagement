@@ -1,4 +1,4 @@
-appCliente.factory("tokenInterceptor", function($q, $location){
+appFactory.factory("tokenInterceptor", function($q, $location){
 	
 	return {
 		

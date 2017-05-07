@@ -1,4 +1,4 @@
-appCliente.component('navBar', {
+appFactory.component('navBar', {
 	
 	bindings: {
 	    name: '<'

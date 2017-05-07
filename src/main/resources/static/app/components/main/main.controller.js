@@ -1,4 +1,4 @@
-appCliente.controller("mainController", function($scope, $location, $route, $routeParams){
+appFactory.controller("mainController", function($scope, $location, $route, $routeParams){
 	
 
 	

@@ -1,19 +1,19 @@
 angular.module('appFactory').service(
-    "orderListService",
+    "workListService",
     function ($http, $q) {
         // API
         return ({
-            getOrderList: getOrderList
+            getWorkList: getWorkList
         });
 
         // PUBLIC METHODS.
 
-        // Get order list
-        function getOrderList() {
+        // Get work list
+        function getWorkList() {
             console.log();
             var request = $http({
                 method: "get",
-                url: "order",
+                url: "work",
                 params: {
                     action: "get"
                 }

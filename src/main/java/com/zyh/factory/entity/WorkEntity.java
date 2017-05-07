@@ -1,8 +1,12 @@
 package com.zyh.factory.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -16,7 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "workTable")
-public class WorkEntity {
+public class WorkEntity  implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -24,7 +33,7 @@ public class WorkEntity {
 //    @Column
 //    private String productId;
     @Column
-    private String status;
+    private String workStatus;
     @Column
     private int quantity;
     @Column
@@ -33,11 +42,13 @@ public class WorkEntity {
     private Date planDeliverDate;
     @Column
     private Date actualDeliverDate;
+    @Column
+    private String remark;
     
     @ManyToOne
     private ProductEntity product;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY,cascade=(CascadeType.ALL))
     @JsonIgnore
     private OrderEntity order;
     
@@ -53,14 +64,15 @@ public class WorkEntity {
 //	public void setProductId(String productId) {
 //		this.productId = productId;
 //	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
 	public Date getExpectDeliverDate() {
 		return expectDeliverDate;
+	}
+	public String getWorkStatus() {
+		return workStatus;
+	}
+	public void setWorkStatus(String workStatus) {
+		this.workStatus = workStatus;
 	}
 	public void setExpectDeliverDate(Date expectDeliverDate) {
 		this.expectDeliverDate = expectDeliverDate;
@@ -94,6 +106,12 @@ public class WorkEntity {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
     

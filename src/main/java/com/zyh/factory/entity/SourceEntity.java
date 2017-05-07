@@ -1,8 +1,10 @@
 package com.zyh.factory.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +21,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "sourceTable")
-public class SourceEntity {
+public class SourceEntity  implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -35,7 +42,7 @@ public class SourceEntity {
     @Column
     private String providerName;
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="source")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="source", cascade=(CascadeType.ALL))
     @JsonIgnore
     private List<ProductSourceEntity> productSource;
 

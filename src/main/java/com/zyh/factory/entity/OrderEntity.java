@@ -1,8 +1,10 @@
 package com.zyh.factory.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,11 +15,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orderTable")
-public class OrderEntity {
+public class OrderEntity implements Serializable{
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue
     private Long orderId;
+    @Column
+    private String orderName;
     @Column
     private String orderStatus;
     @Column
@@ -27,7 +35,7 @@ public class OrderEntity {
     @Column
     private String remark;
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="order")
+    @OneToMany(fetch=FetchType.LAZY, cascade=(CascadeType.ALL), mappedBy="order")
     private List<WorkEntity> orderWorks;
     
 
@@ -66,6 +74,12 @@ public class OrderEntity {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
 	}
     
     

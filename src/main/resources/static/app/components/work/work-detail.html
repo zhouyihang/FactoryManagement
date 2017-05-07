@@ -1,0 +1,50 @@
+<div class="table-responsive">
+
+	<h2>Work product source Details</h2>
+	
+	<label>work id: </label> <label>{{work.workId}}</label>
+	<label>| product: </label> <label>{{work.product.productName}}</label>
+	<label>| status: </label> <label>{{work.workStatus}}</label>
+	<label>| expect: </label> <label>{{work.expectDeliverDate}}</label>
+	<label>| actual: </label> <label>{{work.actualDeliverDate}}</label>
+
+	<table
+		class="table  table-striped  table-bworked  table-hover  table-condensed  js-sticky-table">
+		<thead>
+ 			<tr>
+				<th width="1%">#</th>
+				<th width="5%">source id</th>
+				<th width="20%">source name</th>
+				<th width="5%">quantity</th>
+				<th width="5%">unit</th>
+				<th width="5%">color</th>
+				<th width="5%">unit price</th>
+				<th width="10%">provider name</th>
+				<th width="10%">action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="productSource in work.product.productSource">
+				<td class="aw-table-checkbox"><input type="checkbox" /></td>
+				<td>{{productSource.source.sourceId}}</td>
+				<td>{{productSource.source.sourceName}}</td>
+				<td>{{productSource.quantity}}</td>
+				<td>{{productSource.source.sourceUnit}}</td>
+				<td>{{productSource.sourceColor}}</td>
+				<td>{{productSource.source.price}}</td>
+				<td>{{productSource.source.providerName}}</td>
+				<td>
+					<div> <!--  style="text-align: center;" -->
+						<a href="#/viewWork/{{work.workId}}" class="btn btn-default btn-xs"><i class="fa fa-search" aria-hidden="true"></i></a>
+						<a href="#/editWork/{{work.workId}}" class="btn  btn-warning btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<btn-remove name="" action="removerWork(work)"></btn-remove>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<p>
+		<a class="btn btn-primary btn-lg" href="#/newWork" role="button">add work</a>
+	</p>
+</div>

@@ -23,6 +23,24 @@ public class OrderServiceImpl implements OrderService {
 			message.doSetError("order group missing.");
 			return order;
 		}
+		if (order.getOrderId()==null) {
+			order.setOrderStatus("new");
+		}
+		
+		return order;
+	}
+
+	@Override
+	public OrderEntity update(TransMessage message, OrderEntity order) {
+		if (message == null) {
+			message = new TransMessage();
+			message.doSetError("message group missing.");
+			return order;
+		}
+		if (order == null) {
+			message.doSetError("order group missing.");
+			return order;
+		}
 		return order;
 	}
 

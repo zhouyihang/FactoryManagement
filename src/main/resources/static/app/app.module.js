@@ -1,15 +1,15 @@
-var appCliente = angular.module("appCliente", ['appDirectives', 'ngResource', 'ngRoute', 'angular-growl', 'ngAnimate',
+var appFactory = angular.module("appFactory", ['appDirectives', 'ngResource', 'ngRoute', 'angular-growl', 'ngAnimate',
 		'ui.bootstrap', 'dialogs.default-translations', 'dialogs.main' ]);
 
 /**
  * Registra token no cabeçalho HTTP
  */
 
-appCliente.config(function($httpProvider) {
+appFactory.config(function($httpProvider) {
 	$httpProvider.interceptors.push("tokenInterceptor");
 });
 
-appCliente.run([ '$rootScope', '$location', function($rootScope, $location) {
+appFactory.run([ '$rootScope', '$location', function($rootScope, $location) {
 
 	$rootScope.disableBtnAdmin = function() {
 		return localStorage.getItem("adminToken");
@@ -23,7 +23,7 @@ appCliente.run([ '$rootScope', '$location', function($rootScope, $location) {
 
 		if (localStorage.getItem("adminToken")) {
 			if ($location.path() === '/') {
-				$location.path('/clientes');
+				$location.path('/viewOrders');
 			}
 		}
 	});

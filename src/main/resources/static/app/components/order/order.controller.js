@@ -1,11 +1,11 @@
-appCliente.controller('ordersController', function($scope, orderService, orderListService, dialogs) {
+appFactory.controller('ordersController', function($scope, orderService, orderListService, dialogs) {
 	
 	
-	$scope.init = function() {
-		$scope.getList();
+	$scope.initOrder = function() {
+		$scope.getOrderList();
     };
     
-    $scope.getList = function() {
+    $scope.getOrderList = function() {
         orderListService.getOrderList()
             .then(
                 function( Orders ) {
@@ -34,7 +34,7 @@ appCliente.controller('ordersController', function($scope, orderService, orderLi
     };
     
 	$scope.removerOrder = function(order) {
-		var dlg = dialogs.confirm('remove a order', 'confirm remover?');
+		var dlg = dialogs.confirm('remove a order', 'confirm remove?');
 		dlg.result.then(function(btn){
 			remover(order);
 		},function(btn){

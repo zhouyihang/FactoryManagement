@@ -29,10 +29,10 @@ public class FactoryTestDataController {
     @RequestMapping(value = "/work", method = RequestMethod.GET)
     public WorkIO work() {
     	WorkIO workIO = new WorkIO();
-    	workIO.setWork(new WorkEntity());
-    	workIO.setTransMessage(new TransMessage());
+//    	workIO.setWork(new WorkEntity());
+//    	workIO.setTransMessage(new TransMessage());
     	
-    	workIO.getWork().setStatus("new");
+//    	workIO.setWorkStatus("new");
         return workIO;
     }
     

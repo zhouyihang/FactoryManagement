@@ -11,4 +11,6 @@ public interface WorkService {
 
 	WorkEntity create(TransMessage transMessage, WorkEntity work);
 
+	WorkEntity udate(TransMessage message, WorkEntity work);
+
 }

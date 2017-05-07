@@ -1,4 +1,4 @@
-appCliente.controller('loginController', function ($scope, $http, $location, growl) {
+appFactory.controller('loginController', function ($scope, $http, $location, growl) {
 	
 	$scope.user = {};
 	

@@ -1,5 +1,6 @@
 package com.zyh.factory.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "productTable")
-public class ProductEntity {
+public class ProductEntity  implements Serializable{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -29,7 +35,7 @@ public class ProductEntity {
     @Column
     private int speedSecond;
     
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="product")
+    @OneToMany(cascade=(CascadeType.ALL), mappedBy="product")
     private List<ProductSourceEntity> productSource;
     
     @OneToMany(fetch=FetchType.LAZY, mappedBy="product")

@@ -1,33 +1,23 @@
 package com.zyh.factory.controller.io;
 
+
 import com.zyh.factory.entity.OrderEntity;
 import com.zyh.factory.entity.WorkEntity;
-import com.zyh.factory.transman.TransMessage;
 
 /**
  * @author Yihang
  *
  */
-public class WorkIO extends BasicIO {
+public class WorkIO { //extends WorkEntity {
 
-	private WorkEntity work;
 	private OrderEntity order;
 
-	public WorkIO(TransMessage transMessage, WorkEntity work, OrderEntity order) {
-		super(transMessage);
-		this.work = work;
+	public WorkIO(WorkEntity work, OrderEntity order) {
+		super();
 		this.order = order;
 	}
 
 	public WorkIO() {
-	}
-
-	public WorkEntity getWork() {
-		return work;
-	}
-
-	public void setWork(WorkEntity work) {
-		this.work = work;
 	}
 
 	public OrderEntity getOrder() {

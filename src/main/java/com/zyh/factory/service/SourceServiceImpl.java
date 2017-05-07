@@ -26,4 +26,18 @@ public class SourceServiceImpl implements SourceService {
 		return source;
 	}
 
+	@Override
+	public SourceEntity update(TransMessage message, SourceEntity source) {
+		if (message == null) {
+			message = new TransMessage();
+			message.doSetError("message group missing.");
+			return source;
+		}
+		if (source == null) {
+			message.doSetError("source group missing.");
+			return source;
+		}
+		return source;
+	}
+
 }

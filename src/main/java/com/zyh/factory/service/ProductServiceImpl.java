@@ -32,4 +32,23 @@ public class ProductServiceImpl implements ProductService {
 		return product;
 	}
 
+	@Override
+	public ProductEntity update(TransMessage message, ProductEntity product) {
+		if (message == null) {
+			message = new TransMessage();
+			message.doSetError("message group missing.");
+			return product;
+		}
+		if (product == null) {
+			message.doSetError("product group missing.");
+			return product;
+		}
+		if (product.getProductSource() != null) {
+			for (ProductSourceEntity s: product.getProductSource()) {
+				s.setProduct(product);
+			}
+		}
+		return product;
+	}
+
 }

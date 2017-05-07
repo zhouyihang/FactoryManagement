@@ -1,0 +1,26 @@
+<div class="page-header">
+	<div class="container-fluid">
+		<h2>Edit Work ( id: {{work.workId}} | status: {{work.workStatus}}) in Order ({{order.orderId}} / {{order.orderName}})</h2>
+	</div>
+	<div class="container-fluid">
+		<form name="frmWork" novalidate>
+			<div class="form-group">
+				<label for="expectdate">ExpectDeliverDate:</label>
+				<input id="expectdate" type="date" class="span2" size="16" value={{work.expectDeliverDate}} name="expectDeliverDate" ng-model="work.expectDeliverDate"/>
+
+				<label for="actualdate">  ActualDeliverDate:</label> 
+				<input id="actualdate" type="date" class="span2" size="16" value={{work.actualDeliverDate}} name="actualDeliverDate" ng-model="work.actualDeliverDate"/>
+			</div>
+			<div class="form-group">
+				<label for="remark">remark</label>
+				<textarea id="remark" rows="3" class="form-control" name="remark" ng-model="work.remark"></textarea>
+			</div>
+		</form>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit" ng-disabled="frmWork.$invalid"
+				ng-click="saveWork(work, order.orderId)">Submit</button>
+			<button class="btn  btn-default" type="submit" data-dismiss="modal"
+				ng-click="cancel()">Cancel</button>
+		</div>
+	</div>

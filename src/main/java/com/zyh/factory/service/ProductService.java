@@ -11,4 +11,6 @@ public interface ProductService {
 
 	ProductEntity create(TransMessage transMessage, ProductEntity product);
 
+	ProductEntity update(TransMessage message, ProductEntity product);
+
 }

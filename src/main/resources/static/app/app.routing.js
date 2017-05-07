@@ -1,22 +1,6 @@
-appCliente.config(function($routeProvider) {
+appFactory.config(function($routeProvider) {
 
-	$routeProvider.when("/clientes", {
-		templateUrl : 'app/components/cliente/clientes.html',
-		controller : 'clientesController'
-			
-	}).when("/novoCliente", {
-		templateUrl : 'app/components/cliente/cliente-edit.html',
-		controller : 'clienteController'
-			
-	}).when("/viewCliente/:clienteId", {
-		templateUrl : 'app/components/cliente/cliente-detail.html',
-		controller : 'clienteController'	
-			
-	}).when("/editCliente/:clienteId", {
-		templateUrl : 'app/components/cliente/cliente-edit.html',
-		controller : 'clienteController'
-	
-	}).when("/login", {
+	$routeProvider.when("/login", {
 		templateUrl : 'app/components/auth/login/login.html',
 		controller: 'loginController'
 
@@ -24,18 +8,50 @@ appCliente.config(function($routeProvider) {
 		templateUrl : 'app/components/auth/signup/signup.html',
 		controller: 'SignUpController'
 
+	}).when("/home", {
+		templateUrl : 'app/components/home/home.html',
+		controller : 'homeController'
+		
 	}).when("/viewOrder/:orderId", {
 		templateUrl : 'app/components/order/order-detail.html',
 		controller : 'orderController'	
 			
+	}).when("/updatedorder/", {
+		templateUrl : 'app/components/order/order-detail.html',
+		controller : 'orderController'
+		
 	}).when("/editOrder/:orderId", {
 		templateUrl : 'app/components/order/order-edit.html',
 		controller : 'orderController'
 				
-	}).when("/findAllOrder", {
+	}).when("/newOrder", {
+		templateUrl : 'app/components/order/order-edit.html',
+		controller : 'orderController'
+				
+	}).when("/viewOrders", {
 		templateUrl : 'app/components/order/order.html',
 		controller : 'ordersController'	
+
+	}).when("/viewWork/:workId", {
+		templateUrl : 'app/components/work/work-detail.html',
+		controller : 'workController'	
 			
+	}).when("/updatedwork/", {
+		templateUrl : 'app/components/work/work-detail.html',
+		controller : 'workController'
+		
+	}).when("/editWork/:workId", {
+		templateUrl : 'app/components/work/work-edit.html',
+		controller : 'workController'
+				
+	}).when("/newWork", {
+		templateUrl : 'app/components/work/work-edit.html',
+		controller : 'workController'
+				
+	}).when("/viewWorks", {
+		templateUrl : 'app/components/work/work.html',
+		controller : 'worksController'	
+
 	}).otherwise({
 		redirectTo : '/'
 	});
