@@ -6,7 +6,7 @@
 	<groupId>com.zyh</groupId>
 	<artifactId>FactoryManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>FactoryManagement</name>
 	<description>Demo project for Spring Boot</description>
@@ -33,18 +33,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-<!--			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions> -->
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -78,7 +72,7 @@
 		</dependency> -->
 
 	</dependencies>
-
+<!--
 	<build>
 		<plugins>
 			<plugin>
@@ -110,8 +104,8 @@
 			<url>https://repo.spring.io/libs-release</url>
 		</pluginRepository>
 	</pluginRepositories>
+	-->
 	
-	<!--
 	<build>
 		<plugins>
 			<plugin>
@@ -120,6 +114,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	-->
+	
 
 </project>
