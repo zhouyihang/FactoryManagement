@@ -16,3 +16,10 @@ spring:
   profiles: cloud
   jpa:
     database: MYSQL
+
+---
+
+spring:
+  profiles: openshift
+  jpa:
+    database: MYSQL
