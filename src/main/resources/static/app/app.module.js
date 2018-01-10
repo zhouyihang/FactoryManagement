@@ -1,5 +1,5 @@
 var appFactory = angular.module("appFactory", ['appDirectives', 'ngResource', 'ngRoute', 'angular-growl', 'ngAnimate',
-		'ui.bootstrap', 'dialogs.default-translations', 'dialogs.main' ]);
+		'ui.bootstrap', 'dialogs.default-translations', 'dialogs.main', 'chart.js']);
 
 /**
  * Registra token no cabeçalho HTTP
