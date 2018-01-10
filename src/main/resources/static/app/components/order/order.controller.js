@@ -1,8 +1,9 @@
-appFactory.controller('ordersController', function($scope, orderService, orderListService, dialogs) {
+appFactory.controller('ordersController', function($scope, orderService, orderListService, orderSummaryService, dialogs) {
 	
 	
 	$scope.initOrder = function() {
 		$scope.getOrderList();
+		$scope.getOrderSummary();
     };
     
     $scope.getOrderList = function() {
@@ -14,6 +15,15 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
             )
     };
 
+    $scope.getOrderSummary = function() {
+        orderSummaryService.getOrderSummary()
+            .then(
+                function( OrderSummary ) {
+                    loadOrderSummary( OrderSummary );
+                }
+            )
+    };
+    
     $scope.valueChanged = function() {
         orderListService.getOrderList($scope.selectedOrderStatus)
             .then(
@@ -28,6 +38,33 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
         $scope.orders = newOrders;
     };
 
+    function loadOrderSummary( orderSummary ) {
+        $scope.orderSummary = orderSummary;
+//		  $scope.order_chart1_labels = ["January", "February", "March", "April", "May", "June", "July"];
+		  $scope.order_chart1_series = ['All'];
+//		  $scope.order_chart1_data = [
+//		    [65, 59, 80, 81, 56, 55, 40],
+//		    [28, 48, 40, 19, 86, 27, 90]
+//		  ];
+        	// LOOP THROUGH DATA IN THE JSON FILE.
+		  $scope.order_chart1_labels_arr = new Array;
+		  $scope.order_chart1_data_arr = new Array;
+          angular.forEach(orderSummary, function (item) {
+        	  $scope.order_chart1_labels_arr.push(item.label);
+        	  $scope.order_chart1_data_arr.push(item.count);
+          });
+
+          $scope.order_chart1_labels = new Array;
+          $scope.order_chart1_data = new Array;
+
+          // UPDATE SCOPE PROPERTIES “data” and “label” FOR DATA.
+          $scope.order_chart1_data.push($scope.order_chart1_data_arr.slice(0));
+
+          for (var i = 0; i < $scope.order_chart1_labels_arr.length; i++) {
+        	  $scope.order_chart1_labels.push($scope.order_chart1_labels_arr[i]);
+          }
+    };
+    
     function loadOrderList( orderList ) {
         console.log(orderList);
         $scope.orderList = orderList;
