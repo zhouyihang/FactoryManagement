@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="/vendors/angular-dialog/css/dialogs.min.css" />
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 
-	<script src="/vendors/jQuery/jquery-3.1.1.min.js"></script>
+<!-- 	<script src="/vendors/jQuery/jquery-3.1.1.min.js"></script> -->
 <!--	<script src="/vendors/bootstrap/js/bootstrap.min.js"></script> -->
 
 	<script src="/vendors/angular.min.js"></script>
@@ -25,7 +25,12 @@
 	<script src="/vendors/angular-growl/angular-growl.min.js"></script>
 	<script src="/vendors/angular-dialog/js/dialogs.min.js"></script>
 	<script src="/vendors/angular-dialog/js/dialogs-default-translations.min.js"></script>
-
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> 
+	<!-- ChartJS 
+	<script src="vendors/Chart.min.js"></script> -->
+	<!-- Angularjs chart -->
+	<script src="vendors/angular-chart.min.js"></script>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -61,6 +66,13 @@
 <!-- AdminLTE App -->
 <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 
+<!-- FastClick -->
+<script src="AdminLTE/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="AdminLTE/dist/js/demo.js"></script>
+
+
+
 	<script src="/app/app.module.js"></script>
 	<script src="/app/directives/app.directives.js"></script>
 	<script src="/app/app.routing.js"></script>
@@ -80,6 +92,7 @@
 	<script src="/app/components/order/order-edit.controller.js"></script>
 	<script src="/app/components/order/order.service.js"></script>
 	<script src="/app/components/order/order-list.service.js"></script>
+	<script src="/app/components/order/order-summary.service.js"></script>
 	
 	<script src="/app/components/work/work.controller.js"></script>
 	<script src="/app/components/work/work-edit.controller.js"></script>
@@ -247,9 +260,9 @@ desired effect
         | Your Page Content Here |
         -------------------------->
 
+          
 		<div ng-view="content"></div>
 		
-
 		
     </section>
     <!-- /.content -->
@@ -267,6 +280,21 @@ desired effect
     <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 </div>
+
+
+
+<!-- jQuery 3 -->
+<!-- <script src="AdminLTE/jquery/jquery.min.js"></script> -->
+<!-- Bootstrap 3.3.7 -->
+<!-- <script src="AdminLTE/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- ChartJS -->
+<!-- <script src="AdminLTE/chart.js/Chart.js"></script> -->
+<!-- FastClick -->
+<!-- <script src="AdminLTE/fastclick/lib/fastclick.js"></script> -->
+<!-- AdminLTE App -->
+<!-- <script src="AdminLTE/dist/js/adminlte.min.js"></script> -->
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="AdminLTE/dist/js/demo.js"></script> -->
 
 
 </body>
