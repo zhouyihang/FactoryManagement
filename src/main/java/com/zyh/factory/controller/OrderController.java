@@ -1,5 +1,7 @@
 package com.zyh.factory.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +89,17 @@ public class OrderController {
         return orderRepository.findAll();
     }
 
+    @RequestMapping(value = "/summary/{orderStatus}", method = RequestMethod.GET)
+    public Long orderSummary(@PathVariable String orderStatus) {
+        return orderRepository.countByOrderStatus(orderStatus);
+    }
+    
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
+    public List<?> orderSummary() {
+//        return orderRepository.countGroupByOrderStatus();
+    	return orderRepository.countGroupByMonth();
+    }
+    
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
     public OrderEntity order(@PathVariable long orderId) {
         return orderRepository.findOne(orderId);
