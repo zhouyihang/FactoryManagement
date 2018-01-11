@@ -78,7 +78,7 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
     
     function loadOrderSummaryCompleted( OrderSummaryCompleted ) {
         $scope.OrderSummaryCompleted = OrderSummaryCompleted;
-		  $scope.order_chart1_series = ['completed'];
+		  $scope.order_chart2_series = ['completed'];
         	// LOOP THROUGH DATA IN THE JSON FILE.
 		  $scope.order_chart2_labels_arr = new Array;
 		  $scope.order_chart2_data_arr = new Array;
