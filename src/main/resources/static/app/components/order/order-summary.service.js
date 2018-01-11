@@ -13,7 +13,7 @@ angular.module('appFactory').service(
             console.log();
             var request = $http({
                 method: "get",
-                url: "order/summary",
+                url: "order/summary/active",
                 params: {
                     action: "get"
                 }
