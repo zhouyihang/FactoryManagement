@@ -1,64 +1,124 @@
-
-<div class="table-responsive" data-ng-init="initOrder()">
-	<h2>Order Summary</h2> <a href="#/newOrder" class="btn btn-info btn-lg">create order</a>
-	          <!-- BAR CHART -->
-		<div class="col-md-6">
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Bar Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                	<canvas id="bar" class="chart chart-bar"
-						chart-data="order_chart1_data" chart-labels="order_chart1_labels" chart-series="order_chart1_series">
-					</canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
+appFactory.controller('ordersController', function($scope, orderService, orderListService, orderSummaryService, orderSummaryCompletedService, dialogs) {
 	
+	
+	$scope.initOrder = function() {
+		$scope.getOrderList();
+		$scope.getOrderSummary();
+		$scope.getOrderSummaryCompleted();
+    };
+    
+    $scope.getOrderList = function() {
+        orderListService.getOrderList()
+            .then(
+                function( Orders ) {
+                    loadData( Orders );
+                }
+            )
+    };
 
-	<table
-		class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-		<thead>
- 			<tr>
-				<th width="1%">#</th>
-				<th width="5%">id</th>
-				<th width="40%">name</th>
-				<th width="5%">status</th>
-				<th width="10%">expected</th>
-				<th width="10%">action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="order in orders">
-				<td class="aw-table-checkbox"><input type="checkbox" /></td>
-				<td>{{order.orderId}}</td>
-				<td>{{order.orderName}}</td>
-				<td>{{order.orderStatus}}</td>
-				<td>{{order.expectDeliverDate}}</td>
-				<td>
-					<div> <!--  style="text-align: center;" -->
-						<a href="#/viewOrder/{{order.orderId}}" class="btn btn-default btn-xs"><i class="fa fa-search" aria-hidden="true"></i></a>
-						<a href="#/editOrder/{{order.orderId}}" class="btn  btn-warning btn-xs"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-						<btn-remove name="" action="removerOrder(order)"></btn-remove>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+    $scope.getOrderSummary = function() {
+        orderSummaryService.getOrderSummary()
+            .then(
+                function( OrderSummary ) {
+                    loadOrderSummary( OrderSummary );
+                }
+            )
+    };
+    
 
-<div class="row">
-	<div class="col-xs-6 col-md-4">
-		<a href="#/newOrder" class="btn btn-info btn-lg">create order</a>
-	</div>
-</div>
+    $scope.getOrderSummaryCompleted = function() {
+        orderSummaryCompletedService.getOrderSummary()
+            .then(
+                function( OrderSummaryCompleted ) {
+                    loadOrderSummaryCompleted( OrderSummaryCompleted );
+                }
+            )
+    };
+    
+    $scope.valueChanged = function() {
+        orderListService.getOrderList($scope.selectedOrderStatus)
+            .then(
+                loadOrderList,
+                function( errorMessage ) {
+                    alert( errorMessage );
+                }
+            )
+    };
+
+    function loadData( newOrders ) {
+        $scope.orders = newOrders;
+    };
+
+    function loadOrderSummary( orderSummary ) {
+        $scope.orderSummary = orderSummary;
+//		  $scope.order_chart1_labels = ["January", "February", "March", "April", "May", "June", "July"];
+		  $scope.order_chart1_series = ['Active'];
+//		  $scope.order_chart1_data = [
+//		    [65, 59, 80, 81, 56, 55, 40],
+//		    [28, 48, 40, 19, 86, 27, 90]
+//		  ];
+        	// LOOP THROUGH DATA IN THE JSON FILE.
+		  $scope.order_chart1_labels_arr = new Array;
+		  $scope.order_chart1_data_arr = new Array;
+          angular.forEach(orderSummary, function (item) {
+        	  $scope.order_chart1_labels_arr.push(item.label);
+        	  $scope.order_chart1_data_arr.push(item.count);
+          });
+
+          $scope.order_chart1_labels = new Array;
+          $scope.order_chart1_data = new Array;
+
+          // UPDATE SCOPE PROPERTIES “data” and “label” FOR DATA.
+          $scope.order_chart1_data.push($scope.order_chart1_data_arr.slice(0));
+
+          for (var i = 0; i < $scope.order_chart1_labels_arr.length; i++) {
+        	  $scope.order_chart1_labels.push($scope.order_chart1_labels_arr[i]);
+          }
+    };
+    
+    function loadOrderSummaryCompleted( OrderSummaryCompleted ) {
+        $scope.OrderSummaryCompleted = OrderSummaryCompleted;
+		  $scope.order_chart1_series = ['completed'];
+        	// LOOP THROUGH DATA IN THE JSON FILE.
+		  $scope.order_chart2_labels_arr = new Array;
+		  $scope.order_chart2_data_arr = new Array;
+          angular.forEach(OrderSummaryCompleted, function (item) {
+        	  $scope.order_chart2_labels_arr.push(item.label);
+        	  $scope.order_chart2_data_arr.push(item.count);
+          });
+
+          $scope.order_chart2_labels = new Array;
+          $scope.order_chart2_data = new Array;
+
+          // UPDATE SCOPE PROPERTIES “data” and “label” FOR DATA.
+          $scope.order_chart2_data.push($scope.order_chart2_data_arr.slice(0));
+
+          for (var i = 0; i < $scope.order_chart2_labels_arr.length; i++) {
+        	  $scope.order_chart2_labels.push($scope.order_chart2_labels_arr[i]);
+          }
+    };
+    
+    function loadOrderList( orderList ) {
+        console.log(orderList);
+        $scope.orderList = orderList;
+    };
+    
+	$scope.removerOrder = function(order) {
+		var dlg = dialogs.confirm('remove a order', 'confirm remove?');
+		dlg.result.then(function(btn){
+			remover(order);
+		},function(btn){
+		});
+	};
+	
+	var remover = function(order) {
+		orderService.remove(order.id).$promise.then(
+			function(response) {
+				var index = $scope.orders.indexOf(order);
+				$scope.orders.splice(index, 1);
+			},
+			function(response) {
+
+		});
+	};
+});
