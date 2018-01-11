@@ -21,7 +21,7 @@ public class MachineController {
     }
 
     @RequestMapping(value = "/machines/{machineId}", method = RequestMethod.GET)
-    public MachineEntity machine(@PathVariable String machineId) {
+    public MachineEntity machine(@PathVariable Long machineId) {
         return machineRepository.findOne(machineId);
     }
 }
