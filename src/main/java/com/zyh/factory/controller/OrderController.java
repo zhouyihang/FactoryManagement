@@ -94,10 +94,16 @@ public class OrderController {
         return orderRepository.countByOrderStatus(orderStatus);
     }
     
-    @RequestMapping(value = "/summary", method = RequestMethod.GET)
-    public List<?> orderSummary() {
+    @RequestMapping(value = "/summary/active", method = RequestMethod.GET)
+    public List<?> orderSummaryActive() {
 //        return orderRepository.countGroupByOrderStatus();
-    	return orderRepository.countGroupByMonth();
+    	return orderRepository.countActiveGroupByMonth();
+    }
+    
+    @RequestMapping(value = "/summary/completed", method = RequestMethod.GET)
+    public List<?> orderSummaryCompleted() {
+//        return orderRepository.countGroupByOrderStatus();
+    	return orderRepository.countCompletedGroupByMonth();
     }
     
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
