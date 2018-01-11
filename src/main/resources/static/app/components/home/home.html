@@ -1,17 +1,108 @@
 
-<div>
-	<h2>Welcome to my application</h2>
-</div>
 
+<div class="table-responsive" data-ng-init="initHome()">
+
+	<h2>Welcome to my application</h2>
+
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">定单</span>            
+              	<table><tbody>
+              		<tr ng-repeat="orderSummary in homeSummary.orderSummary">
+						<td>{{orderSummary.label}}</td>
+						<td>&nbsp:&nbsp</td>
+						<td><span class="info-box-number">{{orderSummary.count}}</span></td>
+					</tr>
+				</tbody></table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="ion ion-ios-gear-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">生产</span>            
+              	<table><tbody>
+              		<tr ng-repeat="workSummary in homeSummary.workSummary">
+						<td>{{workSummary.label}}</td>
+						<td>&nbsp:&nbsp</td>
+						<td><span class="info-box-number">{{workSummary.count}}</span></td>
+					</tr>
+				</tbody></table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">机床</span>            
+              	<table><tbody>
+              		<tr ng-repeat="machineSummary in homeSummary.machineSummary">
+						<td>{{machineSummary.label}}</td>
+						<td>&nbsp:&nbsp</td>
+						<td><span class="info-box-number">{{machineSummary.count}}</span></td>
+					</tr>
+				</tbody></table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+                  </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">原料</span>
+              	<table><tbody>
+              		<tr ng-repeat="sourceSummary in homeSummary.sourceSummary">
+						<td>{{sourceSummary.label}}</td>
+						<td>&nbsp:&nbsp</td>
+						<td><span class="info-box-number">{{sourceSummary.count}}</span></td>
+					</tr>
+				</tbody></table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+          
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+              <h3>定单</h3>
+              	<table><tbody>
+              		<tr ng-repeat="orderSummary in homeSummary.orderSummary">
+						<td>{{orderSummary.label}}</td>
+						<td>&nbsp->&nbsp</td>
+						<td><h3>{{orderSummary.count}}</h3></td>
+					</tr>
+				</tbody></table>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -24,9 +115,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <h3>生产</h3>
+              	<table><tbody>
+              		<tr ng-repeat="workSummary in homeSummary.workSummary">
+						<td>{{workSummary.label}}</td>
+						<td>&nbsp->&nbsp</td>
+						<td><h3>{{workSummary.count}}</h3></td>
+					</tr>
+				</tbody></table>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -39,9 +135,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
+              <h3>机床</h3>
+              	<table><tbody>
+              		<tr ng-repeat="machineSummary in homeSummary.machineSummary">
+						<td>{{machineSummary.label}}</td>
+						<td>&nbsp->&nbsp</td>
+						<td><h3>{{machineSummary.count}}</h3></td>
+					</tr>
+				</tbody></table>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -54,9 +155,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
+              <h3>原料</h3>
+              	<table><tbody>
+              		<tr ng-repeat="sourceSummary in homeSummary.sourceSummary">
+						<td>{{sourceSummary.label}}</td>
+						<td>&nbsp->&nbsp</td>
+						<td><h3>{{sourceSummary.count}}</h3></td>
+					</tr>
+				</tbody></table>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -67,4 +173,5 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
-      
+
+</div>
