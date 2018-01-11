@@ -1,9 +1,10 @@
-appFactory.controller('ordersController', function($scope, orderService, orderListService, orderSummaryService, dialogs) {
+appFactory.controller('ordersController', function($scope, orderService, orderListService, orderSummaryService, orderSummaryCompletedService, dialogs) {
 	
 	
 	$scope.initOrder = function() {
 		$scope.getOrderList();
 		$scope.getOrderSummary();
+		$scope.getOrderSummaryCompleted();
     };
     
     $scope.getOrderList = function() {
@@ -20,6 +21,16 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
             .then(
                 function( OrderSummary ) {
                     loadOrderSummary( OrderSummary );
+                }
+            )
+    };
+    
+
+    $scope.getOrderSummaryCompleted = function() {
+        orderSummaryCompletedService.getOrderSummary()
+            .then(
+                function( OrderSummaryCompleted ) {
+                    loadOrderSummaryCompleted( OrderSummaryCompleted );
                 }
             )
     };
@@ -41,7 +52,7 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
     function loadOrderSummary( orderSummary ) {
         $scope.orderSummary = orderSummary;
 //		  $scope.order_chart1_labels = ["January", "February", "March", "April", "May", "June", "July"];
-		  $scope.order_chart1_series = ['All'];
+		  $scope.order_chart1_series = ['Active'];
 //		  $scope.order_chart1_data = [
 //		    [65, 59, 80, 81, 56, 55, 40],
 //		    [28, 48, 40, 19, 86, 27, 90]
@@ -62,6 +73,28 @@ appFactory.controller('ordersController', function($scope, orderService, orderLi
 
           for (var i = 0; i < $scope.order_chart1_labels_arr.length; i++) {
         	  $scope.order_chart1_labels.push($scope.order_chart1_labels_arr[i]);
+          }
+    };
+    
+    function loadOrderSummaryCompleted( OrderSummaryCompleted ) {
+        $scope.OrderSummaryCompleted = OrderSummaryCompleted;
+		  $scope.order_chart1_series = ['completed'];
+        	// LOOP THROUGH DATA IN THE JSON FILE.
+		  $scope.order_chart2_labels_arr = new Array;
+		  $scope.order_chart2_data_arr = new Array;
+          angular.forEach(OrderSummaryCompleted, function (item) {
+        	  $scope.order_chart2_labels_arr.push(item.label);
+        	  $scope.order_chart2_data_arr.push(item.count);
+          });
+
+          $scope.order_chart2_labels = new Array;
+          $scope.order_chart2_data = new Array;
+
+          // UPDATE SCOPE PROPERTIES “data” and “label” FOR DATA.
+          $scope.order_chart2_data.push($scope.order_chart2_data_arr.slice(0));
+
+          for (var i = 0; i < $scope.order_chart2_labels_arr.length; i++) {
+        	  $scope.order_chart2_labels.push($scope.order_chart2_labels_arr[i]);
           }
     };
     
