@@ -32,6 +32,8 @@ public class SourceEntity  implements Serializable{
     @GeneratedValue
     private long sourceId;
     @Column
+    private String sourceStatus;
+    @Column
     private String sourceName;
     @Column
     private String sourceCode;
@@ -88,6 +90,12 @@ public class SourceEntity  implements Serializable{
 	}
 	public void setSourceCode(String sourceCode) {
 		this.sourceCode = sourceCode;
+	}
+	public String getSourceStatus() {
+		return sourceStatus;
+	}
+	public void setSourceStatus(String sourceStatus) {
+		this.sourceStatus = sourceStatus;
 	}
 
     
