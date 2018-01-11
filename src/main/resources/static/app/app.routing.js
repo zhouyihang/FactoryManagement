@@ -53,7 +53,7 @@ appFactory.config(function($routeProvider) {
 		controller : 'worksController'	
 
 	}).otherwise({
-		redirectTo : '/'
+		redirectTo : '/home'
 	});
 
 });
