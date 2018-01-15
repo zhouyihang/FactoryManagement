@@ -2,45 +2,87 @@
 	<div class="container-fluid">
 		<h2>Edit Order ( id: {{order.orderId}} | status: {{order.orderStatus}})</h2>
 	</div>
-	<div class="container-fluid">
-		<form name="frmOrder" novalidate>
-			<div class="form-group">
-				<label for="ordername">Name:</label>
-				<input id="ordername" class="span2" value={{order.orderName}} name="orderName" ng-model="order.orderName"/>
-			
-				<label for="orderstatus">Status:</label>
-				<input id="orderstatus" class="span2" size="5" value={{order.orderStatus}} name="orderStatus" ng-model="order.orderStatus"/>
-			
-				<label for="expectdate">ExpectDeliverDate:</label>
-				<input id="expectdate" type="date" class="span2" size="16" value={{order.expectDeliverDate}} name="expectDeliverDate" ng-model="order.expectDeliverDate"/>
-
-				<label for="actualdate">  ActualDeliverDate:</label> 
-				<input id="actualdate" type="date" class="span2" size="16" value={{order.actualDeliverDate}} name="actualDeliverDate" ng-model="order.actualDeliverDate"/>
-			</div>
-			<div class="form-group">
-				<label for="remark">remark</label>
-				<textarea id="remark" rows="3" class="form-control" name="remark" ng-model="order.remark"></textarea>
-			</div>
-		</form>
-		
-
-	<!-- <button class="btn  btn-primary" type="submit" ng-click="addRow(order)">add product</button> -->
+	<!-- AdminLTE -->
+	<!-- order header -->
 	
-	<table
-		class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-		<thead>
- 			<tr>
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">订单基本信息</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+         <form name="frmOrder" novalidate class="form-horizontal">
+         <div class="box-body">
+			<div class="form-group">
+                  <label for="ordername" class="col-sm-2 control-label">Name:</label>
+
+                  <div class="col-sm-6">
+                    <input id="ordername" class="form-control" value={{order.orderName}} name="orderName" ng-model="order.orderName"/>
+                  </div>
+            </div>
+            <div class="form-group">
+                  <label for="orderstatus" class="col-sm-2 control-label">Status:</label>
+
+                  <div class="col-sm-1">
+                    <input id="orderstatus" class="form-control" size="5" value={{order.orderStatus}} name="orderStatus" ng-model="order.orderStatus"/>
+                  </div>
+            </div>
+            <div class="form-group">
+                  <label for="expectdate" class="col-sm-2 control-label">ExpectDeliverDate:</label>
+
+                  <div class="col-sm-2">
+                    <input id="expectdate" type="date" class="form-control" value={{order.expectDeliverDate}} name="expectDeliverDate" ng-model="order.expectDeliverDate"/>
+                  </div>
+            </div>
+            <div class="form-group">
+                  <label for="actualdate" class="col-sm-2 control-label">ActualDeliverDate:</label>
+
+                  <div class="col-sm-2">
+                    <input id="actualdate" type="date" class="form-control" value={{order.actualDeliverDate}} name="actualDeliverDate" ng-model="order.actualDeliverDate"/>
+                  </div>
+            </div>
+			<div class="form-group">
+				<label for="remark" class="col-sm-2 control-label">remark:</label>
+				<div class="col-sm-6">
+					<textarea id="remark" rows="3" class="form-control" name="remark" ng-model="order.remark"></textarea>
+				</div>
+			</div>
+		</div>
+		</form>
+
+          </div>
+	
+	<!-- order details -->
+	      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">订单详细</h3>
+
+<!--               <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
 				<th width="1%"><button class="btn-xs" ng-click="addRow(order)"><i class="fa fa-plus-square-o" aria-hidden="true"></button></th>
 				<th width="5%">select</th>
 				<th width="80%">product name</th>
-				<th width="5%">quantity</th>
+				<th width="1%">quantity</th>
 <!-- 				<th width="5%">source</th>
 				<th width="10%">source quantity</th>
 				<th width="10%">source unit</th> -->
 				<th width="10%">action</th>
-			</tr>
-		</thead>
-		<tbody>
+                </tr>
+                
 			<tr ng-repeat="work in order.orderWorks" ng-init="workIndex = $index">
 				<td>NO.{{$index+1}}</td>
 				<td><!-- <input id="workproductId" class="span2" value={{work.product.productId}} name="workproduct" ng-model="work.product.productId"/> -->
@@ -85,7 +127,7 @@
 		</tbody>
 	</table>
         		</td>
-				<td><input id="workquantity" class="span2" value={{work.quantity}} name="workquantity" ng-model="work.quantity"/></td>
+				<td><input id="workquantity" class="form-control" value={{work.quantity}} name="workquantity" ng-model="work.quantity"/></td>
 				
 				<td>
 					<div> <!--  style="text-align: center;" -->
@@ -95,8 +137,16 @@
 					</div>
 				</td>
 			</tr>
-		</tbody>
-	</table>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+	<!-- ./AdminLTE -->
+	
+	<div class="container-fluid">
 		<div class="form-group">
 			<button class="btn  btn-primary" type="submit" ng-disabled="frmOrder.$invalid"
 				ng-click="saveOrder(order)">Submit</button>
